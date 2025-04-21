@@ -10,7 +10,7 @@
         }
     </style>
     <script>
-        async function sendPing(webhookUrl) {
+        async function sendPing(webhookUrl, roleId) {
             try {
                 const response = await fetch(webhookUrl, {
                     method: "POST",
@@ -18,7 +18,7 @@
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        content: "<@&1363447552074322062> ***** BANDIT *****"
+                        content: `<@&${roleId}> ***** BANDIT *****`
                     }),
                 });
                 return response.ok;
@@ -28,13 +28,15 @@
             }
         }
 
-
         window.onload = async function() {
             const webhook1 = "https://discord.com/api/webhooks/1363739479067721798/Lt5o8h9nnNDimNVM_zoPe6sgUdrvmz96T4SGotFEjft2S4HSpCOBT_vqlmXCfQ6kLXpo";  // Thay bằng webhook server 1
             const webhook2 = "https://discord.com/api/webhooks/1363773115028475994/TQeFVJcTy21mKGtbC6Nzer9-WEBIMq5ykji98TO__BZlGzJgSdyL0SdCwSGmilRvtW2G";  // Thay bằng webhook server 2
 
-            const success1 = await sendPing(webhook1);
-            const success2 = await sendPing(webhook2);
+            const role1 = "1363447552074322062";  // Role ID cho webhook1
+            const role2 = "1294907861498986577";  // Role ID cho webhook2
+
+            const success1 = await sendPing(webhook1, role1);
+            const success2 = await sendPing(webhook2, role2);
             
             const message = document.getElementById('message');
             
