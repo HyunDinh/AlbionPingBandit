@@ -10,9 +10,9 @@
         }
     </style>
     <script>
-        async function sendPing() {
+        async function sendPing(webhookUrl) {
             try {
-                const response = await fetch("https://discord.com/api/webhooks/1363739479067721798/Lt5o8h9nnNDimNVM_zoPe6sgUdrvmz96T4SGotFEjft2S4HSpCOBT_vqlmXCfQ6kLXpo", {
+                const response = await fetch(webhookUrl, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -21,13 +21,13 @@
                         content: "<@&1363447552074322062> ***** BANDIT *****"
                     }),
                 });
-                
                 return response.ok;
             } catch (error) {
                 console.error(error);
                 return false;
             }
         }
+
 
         window.onload = async function() {
             const webhook1 = "https://discord.com/api/webhooks/1363739479067721798/Lt5o8h9nnNDimNVM_zoPe6sgUdrvmz96T4SGotFEjft2S4HSpCOBT_vqlmXCfQ6kLXpo";  // Thay bằng webhook server 1
