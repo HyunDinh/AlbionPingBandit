@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ping Bandit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+    <script>
+        async function sendPing() {
+            try {
+                const response = await fetch("https://discord.com/api/webhooks/1363739479067721798/Lt5o8h9nnNDimNVM_zoPe6sgUdrvmz96T4SGotFEjft2S4HSpCOBT_vqlmXCfQ6kLXpo", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        content: "<@&1363447552074322062> ***** BANDIT *****"
+                    }),
+                });
+                
+                return response.ok;
+            } catch (error) {
+                console.error(error);
+                return false;
+            }
+        }
+
+        window.onload = async function() {
+            const success = await sendPing();
+            const message = document.getElementById('message');
+            
+            if (success) {
+                message.textContent = "Đã gửi thông báo thành công! Đóng trang...";
+                setTimeout(() => {
+                    window.location.href = "about:blank";
+                }, 1500);
+            } else {
+                message.textContent = "Có lỗi xảy ra khi gửi thông báo";
+                message.style.color = "red";
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="message">Đang gửi thông báo đến Discord...</div>
+</body>
+</html>
