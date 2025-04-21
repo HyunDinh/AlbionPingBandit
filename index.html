@@ -30,11 +30,16 @@
         }
 
         window.onload = async function() {
-            const success = await sendPing();
+            const webhook1 = "WEBHOOK_LINK_1";  // Thay bằng webhook server 1
+            const webhook2 = "WEBHOOK_LINK_2";  // Thay bằng webhook server 2
+
+            const success1 = await sendPing(webhook1);
+            const success2 = await sendPing(webhook2);
+            
             const message = document.getElementById('message');
             
-            if (success) {
-                message.textContent = "Đã gửi thông báo thành công! Đóng trang...";
+            if (success1 && success2) {
+                message.textContent = "Đã gửi thông báo thành công đến cả hai webhook!";
                 setTimeout(() => {
                     window.location.href = "about:blank";
                 }, 1500);
